@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WANZIKI LLC | Federal IT Program Management & ServiceNow GRC/IRM</title>
+  <meta name="description" content="WANZIKI LLC — SAM-registered, Black-owned federal IT consulting firm. ServiceNow GRC/IRM, IT Program Management, Cybersecurity Advisory. UEI: F4CSJGK9F3G2 | CAGE: 1ETR7" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #0B1628;
+      --navy2:   #0F1F3D;
+      --gold:    #C9982A;
+      --gold2:   #E8B84B;
+      --slate:   #1E2D4A;
+      --mist:    #A8B8CC;
+      --white:   #F4F7FB;
+      --off:     #D4DCE8;
+      --accent:  #2563EB;
+      --green:   #10B981;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5vw;
+      background: rgba(11, 22, 40, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 152, 42, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--white); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mist);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 3px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 5vw 5rem;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,152,42,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,152,42,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      bottom: 0; left: 5%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,152,42,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 30px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.25s forwards;
+    }
+
+    .hero-title .gold { color: var(--gold); }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--mist);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s forwards;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.55s forwards;
+    }
+
+    .badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 2px;
+      border: 1px solid rgba(201,152,42,0.4);
+      color: var(--gold2);
+      background: rgba(201,152,42,0.07);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.7s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      padding: 0.85rem 1.8rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(201,152,42,0.5);
+      color: var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      padding: 0.85rem 1.8rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(201,152,42,0.07);
+      transform: translateY(-1px);
+    }
+
+    /* ── SAM STRIP ── */
+    .sam-strip {
+      position: relative;
+      z-index: 1;
+      background: rgba(30,45,74,0.7);
+      border-top: 1px solid rgba(201,152,42,0.2);
+      border-bottom: 1px solid rgba(201,152,42,0.2);
+      padding: 1.2rem 5vw;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .sam-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .sam-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+
+    .sam-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--gold2);
+      font-weight: 500;
+    }
+
+    .sam-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse-green 2s infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+      50% { box-shadow: 0 0 0 5px rgba(16,185,129,0); }
+    }
+
+    .sam-active {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-left: auto;
+    }
+
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; padding: 6rem 5vw; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      color: var(--white);
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--mist);
+      max-width: 540px;
+      font-weight: 300;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--navy2); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      border: 1.5px solid rgba(201,152,42,0.15);
+    }
+
+    .service-card {
+      background: var(--navy);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.35s;
+    }
+
+    .service-card:hover { background: rgba(30,45,74,0.8); }
+    .service-card:hover::before { height: 100%; }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      font-size: 0.875rem;
+      color: var(--mist);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.2rem;
+    }
+
+    .service-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,152,42,0.25);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    /* ── CREDENTIALS ── */
+    #credentials { background: var(--navy); }
+
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .cred-card {
+      border: 1px solid rgba(201,152,42,0.2);
+      border-radius: 4px;
+      padding: 1.8rem 1.5rem;
+      background: rgba(30,45,74,0.3);
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .cred-card:hover {
+      border-color: rgba(201,152,42,0.6);
+      background: rgba(30,45,74,0.6);
+    }
+
+    .cred-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+
+    .cred-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: var(--gold2);
+      margin-bottom: 0.3rem;
+    }
+
+    .cred-body {
+      font-size: 0.8rem;
+      color: var(--mist);
+      font-weight: 300;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--navy2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--off);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .about-text strong { color: var(--gold2); font-weight: 600; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      border: 1px solid rgba(201,152,42,0.2);
+      border-radius: 4px;
+      padding: 1.5rem 1.2rem;
+      background: rgba(11,22,40,0.5);
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--mist);
+      font-weight: 300;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy); }
+
+    .contact-inner {
+      max-width: 700px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      border: 1px solid rgba(201,152,42,0.15);
+      border-radius: 4px;
+      padding: 1.2rem 1.2rem;
+      background: rgba(30,45,74,0.3);
+    }
+
+    .contact-item-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .contact-item-value {
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+
+    .contact-item-value a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item-value a:hover { color: var(--gold2); }
+
+    .contact-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(201,152,42,0.15);
+      padding: 2rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--mist);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-naics {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--mist);
+      opacity: 0.7;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      position: relative;
+      z-index: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,152,42,0.3), transparent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">WANZIKI<span> LLC</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Federal IT Consulting · Black-Owned Small Business</p>
+      <h1 class="hero-title">
+        The <span class="gold">GRC &amp;</span><br/>
+        ServiceNow<br/>
+        <span class="gold">Advantage.</span>
+      </h1>
+      <p class="hero-subtitle">
+        WANZIKI LLC delivers rare-stack federal IT program governance — where deep ServiceNow IRM expertise meets PMP-certified program leadership and CISA-level cybersecurity rigor.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">PMP Certified</span>
+        <span class="badge">CISA Certified</span>
+        <span class="badge">CompTIA Security+</span>
+        <span class="badge">ServiceNow CSA</span>
+        <span class="badge">SAM.gov Active</span>
+        <span class="badge">Black-Owned SB</span>
+      </div>
+      <div class="hero-actions">
+        <a href="capability-statement.pdf" class="btn-primary" download>
+          ⬇ Download Capability Statement
+        </a>
+        <a href="#contact" class="btn-outline">
+          Partner With Us →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAM STRIP -->
+  <div class="sam-strip">
+    <div class="sam-item">
+      <span class="sam-label">UEI</span>
+      <span class="sam-value">F4CSJGK9F3G2</span>
+    </div>
+    <div class="sam-item">
+      <span class="sam-label">CAGE</span>
+      <span class="sam-value">1ETR7</span>
+    </div>
+    <div class="sam-item">
+      <span class="sam-label">Primary NAICS</span>
+      <span class="sam-value">541512</span>
+    </div>
+    <div class="sam-item">
+      <span class="sam-label">Entity</span>
+      <span class="sam-value">WANZIKI LLC</span>
+    </div>
+    <div class="sam-item">
+      <span class="sam-label">Expires</span>
+      <span class="sam-value">April 2027</span>
+    </div>
+    <div class="sam-active">
+      <span class="sam-dot"></span>
+      SAM.gov Active &amp; Verified
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Core Service Lines</h2>
+    <p class="section-sub">Specialized consulting engagements for federal primes, subcontractors, and agencies requiring GRC, IT program leadership, and cybersecurity advisory expertise.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <p class="service-name">ServiceNow GRC / IRM Consulting</p>
+        <p class="service-desc">Implementation oversight, module configuration support, and governance framework development on the ServiceNow IRM platform. Risk statements, control objectives, policy lifecycle, entity scoping, and audit task management.</p>
+        <div class="service-tags">
+          <span class="service-tag">IRM</span>
+          <span class="service-tag">GRC Module</span>
+          <span class="service-tag">Policy Mgmt</span>
+          <span class="service-tag">Risk Assessment</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">📋</span>
+        <p class="service-name">Federal IT Program Management</p>
+        <p class="service-desc">PMP-certified program governance for complex federal IT initiatives. Scope management, stakeholder alignment, schedule control, and deliverable oversight across multi-vendor, regulated environments.</p>
+        <div class="service-tags">
+          <span class="service-tag">PMP</span>
+          <span class="service-tag">Stakeholder Mgmt</span>
+          <span class="service-tag">PMO</span>
+          <span class="service-tag">Agile / Waterfall</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🛡️</span>
+        <p class="service-name">GRC &amp; Cybersecurity Advisory</p>
+        <p class="service-desc">CISA-certified advisory across governance, risk, and compliance frameworks. NIST RMF alignment, audit readiness, control assessments, and security posture improvement for federal and regulated environments.</p>
+        <div class="service-tags">
+          <span class="service-tag">CISA</span>
+          <span class="service-tag">NIST RMF</span>
+          <span class="service-tag">Audit Readiness</span>
+          <span class="service-tag">CMMC</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <p class="service-name">SAP S/4HANA Program Support</p>
+        <p class="service-desc">Program management oversight for SAP S/4HANA O2C and P2P workstreams in large-scale enterprise and federal ERP environments. Billing cycle optimization, reporting alignment, and stakeholder coordination.</p>
+        <div class="service-tags">
+          <span class="service-tag">SAP S/4HANA</span>
+          <span class="service-tag">O2C / P2P</span>
+          <span class="service-tag">Power BI</span>
+          <span class="service-tag">ERP PMO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <p class="section-label">Certifications &amp; Registrations</p>
+    <h2 class="section-title">Our Credentials</h2>
+    <p class="section-sub">A rare combination of program management, cybersecurity, and platform credentials — verified and active.</p>
+
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-icon">🏅</div>
+        <p class="cred-name">PMP</p>
+        <p class="cred-body">Project Management Professional — PMI. The gold standard in IT program governance.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🔐</div>
+        <p class="cred-name">CISA</p>
+        <p class="cred-body">Certified Information Systems Auditor — ISACA. Enterprise GRC and audit certification.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🛡️</div>
+        <p class="cred-name">CompTIA Security+</p>
+        <p class="cred-body">DoD 8570 baseline certification. Cybersecurity fundamentals for federal environments.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">⚙️</div>
+        <p class="cred-name">ServiceNow CSA</p>
+        <p class="cred-body">Certified System Administrator — ServiceNow. Platform foundation for GRC/IRM engagements.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">⚡</div>
+        <p class="cred-name">CIS-RC (In Progress)</p>
+        <p class="cred-body">ServiceNow Certified Implementation Specialist — Risk &amp; Compliance. Expected 2026.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🇺🇸</div>
+        <p class="cred-name">SAM.gov Registered</p>
+        <p class="cred-body">Active federal registration. UEI: F4CSJGK9F3G2 · CAGE: 1ETR7 · Expires April 2027.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">Built for Federal Work</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          WANZIKI LLC was founded by <strong>Frankline Nganje</strong> — a PMP, CISA, and ServiceNow CSA-certified program manager with over a decade of enterprise IT leadership in regulated, high-complexity environments.
+        </p>
+        <p>
+          The firm was built around a specific gap in the federal marketplace: organizations need program managers who don't just <em>manage</em> GRC programs — they need someone who <strong>understands GRC deeply</strong>. That rare combination of governance expertise and PM discipline is the core of everything WANZIKI LLC delivers.
+        </p>
+        <p>
+          Headquartered in <strong>Buford, Georgia</strong> (Atlanta metro), WANZIKI LLC is a <strong>Black-owned, minority-owned small business</strong> with an active SAM.gov registration, ready to engage on federal subcontracts, teaming agreements, and prime opportunities today.
+        </p>
+        <p style="margin-top: 1.5rem;">
+          <a href="#contact" class="btn-primary" style="font-size: 0.85rem; padding: 0.7rem 1.4rem; display: inline-flex;">
+            Start a Conversation →
+          </a>
+        </p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <p class="stat-num">10+</p>
+          <p class="stat-label">Years enterprise IT program management</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-num">4</p>
+          <p class="stat-label">Active professional certifications</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-num">100K+</p>
+          <p class="stat-label">Stakeholder environments managed (public sector)</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-num">6</p>
+          <p class="stat-label">Active NAICS codes across IT &amp; logistics</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Ready to Partner</h2>
+    <p class="section-sub">Whether you're a prime contractor seeking a minority-owned sub, an agency with GRC consulting needs, or a recruiter with a federal C2C opportunity — we want to hear from you.</p>
+
+    <div class="contact-inner">
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-item-label">Business Email</span>
+          <span class="contact-item-value">
+            <a href="mailto:wanzikillc@gmail.com">wanzikillc@gmail.com</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Location</span>
+          <span class="contact-item-value">Buford, GA · Atlanta Metro</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">SAM UEI</span>
+          <span class="contact-item-value">F4CSJGK9F3G2</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">CAGE Code</span>
+          <span class="contact-item-value">1ETR7</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Primary NAICS</span>
+          <span class="contact-item-value">541512 · 541519 · 541690</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">PSC Codes</span>
+          <span class="contact-item-value">DF01 · DA01 · DJ01 · R499</span>
+        </div>
+      </div>
+
+      <div class="contact-cta">
+        <a href="mailto:wanzikillc@gmail.com" class="btn-primary">
+          ✉ Email WANZIKI LLC
+        </a>
+        <a href="capability-statement.pdf" class="btn-outline" download>
+          ⬇ Capability Statement
+        </a>
+        <a href="https://www.linkedin.com/in/wanzifranklin" target="_blank" class="btn-outline">
+          LinkedIn Profile →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-logo">WANZIKI LLC</p>
+    <p class="footer-copy">© 2025 WANZIKI LLC · Buford, GA · Black-Owned Small Business · SAM Active</p>
+    <p class="footer-naics">NAICS: 541512 · 541519 · 541690 · 492110 · 493110 · 423420</p>
+  </footer>
+
+</body>
+</html>
